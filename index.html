@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mayuresh 💖 Valentine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      width: 350px;
+      z-index: 10;
+    }
+
+    h1 {
+      color: #ff4d6d;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 25px 0;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 12px 26px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-right: 20px;
+    }
+
+    .no {
+      position: absolute;
+      background: #e0e0e0;
+      color: #333;
+      border: none;
+      padding: 12px 26px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .party {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 32px;
+      animation: dance 2s infinite;
+    }
+
+    @keyframes dance {
+      0% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-25px) rotate(15deg); }
+      100% { transform: translateY(0) rotate(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card" id="card">
+    <h1>Hey 💕</h1>
+    <p>Mayuresh, will you be my Valentine? 💌</p>
+    <button class="yes" onclick="party()">YES 😍</button>
+    <button class="no" id="noBtn">NO 🙈</button>
+  </div>
+
+  <div class="party" id="party"></div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+
+    function moveNo() {
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    // Move on hover AND click (mobile friendly)
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+    noBtn.addEventListener("click", moveNo);
+
+    function party() {
+      document.getElementById("card").innerHTML = `
+        <h1>YAYYY 🥳💖</h1>
+        <p>You said YES 😍</p>
+        <p>Let’s PARTY 🕺💃</p>
+      `;
+
+      const emojis = ["💃","🕺","🎉","💖","🥳","✨","😍","❤️"];
+      const party = document.getElementById("party");
+
+      for (let i = 0; i < 100; i++) {
+        const e = document.createElement("span");
+        e.className = "emoji";
+        e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        e.style.left = Math.random() * 100 + "vw";
+        e.style.top = Math.random() * 100 + "vh";
+        e.style.animationDuration = (1 + Math.random() * 2) + "s";
+        party.appendChild(e);
+      }
+    }
+  </script>
+
+</body>
+</html>
