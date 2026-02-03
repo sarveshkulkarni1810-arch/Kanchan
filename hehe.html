@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mayuresh 💖 Valentine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 90%;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .no {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    /* Party Mode */
+    .party {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 32px;
+      animation: dance 2s infinite ease-in-out;
+    }
+
+    @keyframes dance {
+      0% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-20px) rotate(10deg); }
+      50% { transform: translateY(0) rotate(-10deg); }
+      75% { transform: translateY(-20px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card" id="card">
+    <h1>Hey 💕</h1>
+    <p>Mayuresh, will you be my Valentine? 💌</p>
+
+    <div class="buttons">
+      <button class="yes" onclick="party()">YES 😍</button>
+      <button class="no" onclick="alert('No is illegal 😌')">NO 🙈</button>
+    </div>
+  </div>
+
+  <div class="party" id="party"></div>
+
+  <script>
+    function party() {
+      document.getElementById("card").innerHTML = `
+        <h1>YAYYY 🥳💖</h1>
+        <p>You just made my Valentine's Day perfect 💕</p>
+        <p>Let’s PARTY 🕺💃</p>
+      `;
+
+      const emojis = ["💃","🕺","🎉","💖","🥳","✨","😍","❤️"];
+      const partyDiv = document.getElementById("party");
+
+      for (let i = 0; i < 80; i++) {
+        const span = document.createElement("span");
+        span.classList.add("emoji");
+        span.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.top = Math.random() * 100 + "vh";
+        span.style.animationDuration = (1 + Math.random() * 2) + "s";
+        partyDiv.appendChild(span);
+      }
+    }
+  </script>
+
+</body>
+</html>
